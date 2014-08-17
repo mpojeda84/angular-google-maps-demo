@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en" ng-app="app" ng-controller="appCtrl">
+<head>
+  <script src="common/bower_components/angular/angular.js"></script>
+  <script src="common/bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script src="common/bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="common/bower_components/angular-animate/angular-animate.js"></script>
+  <script src="common/bower_components/angular-resource/angular-resource.js"></script>
+  <script src="common/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="common/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <script src="common/bower_components/angular-translate/angular-translate.js"></script>
+  <script src="common/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+  <script src="common/bower_components/ng-table/ng-table.js"></script>
+  <script src='//maps.googleapis.com/maps/api/js?libraries=places&sensor=false'></script>
+  <script src='common/bower_components/lodash.underscore.js'></script>
+  <script src='common/bower_components/ngAutocomplete.js'></script>
+  <script src='common/bower_components/angular-google-maps/dist/angular-google-maps.js'></script>
+  <script src='common/bower_components/jquery/dist/jquery.js'></script>
+  <script src="app.js"></script>
+  <script src="app-controllers.js"></script>
+  <script src="app-directives.js"></script>
+  <script src="app-services.js"></script>
+  <script src="app-filters.js"></script>
+  <script src="module1/module1.js"></script>
+  <script src="module1/module1-controllers.js"></script>
+  <script src="module1/module1-directives.js"></script>
+  <script src="module1/module1-filters.js"></script>
+  <script src="module1/module1-services.js"></script>
+  <link rel="stylesheet" type="text/css" href="common/bower_components/bootstrap/dist/css/bootstrap.css"/>
+  <link rel="stylesheet" type="text/css" href="common/bower_components/ng-table/ng-table.css"/>
+  <link rel="stylesheet" type="text/css" href="app.css"/>
+</head>
+
+<body>
+ 
+
+ <div class="container">  
+     <div>
+    	 <span>
+	     	<a href="" ng-click="switchLanguage('es_CU')" translate>GLOBAL.LANG_ES_CU</a>
+			&nbsp; | &nbsp;
+			<a href="" ng-click="switchLanguage('en_US')" translate>GLOBAL.LANG_EN_US</a> 
+		</span>
+         <br/>
+	</div>
+
+     <div ui-view></div>
+
+ </div>
+   
+</body>
+</html>

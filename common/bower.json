@@ -1,0 +1,24 @@
+{
+  "name": "mycc_app",
+  "description": "MyCC App with AngularJS",
+  "version": "0.0.0",
+  "homepage": "",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.2.15",
+    "angular-animate": "",
+    "angular-cookies": "",
+    "ng-table": "0.3.2",
+    "angular-sanitize": "~1.2.15",
+    "angular-mocks": "~1.2.16",
+    "bootstrap": "~3.1.1",
+    "angular-route": "~1.2.15",
+    "angular-resource": "~1.2.x",
+    "angular-bootstrap": "~0.11.x",
+    "angular-ui-router": "",
+    "angular-translate": "",
+    "angular-translate-loader-static-files" : "",
+    "angular-google-maps": ""
+
+  }
+}

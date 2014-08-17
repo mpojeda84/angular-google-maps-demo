@@ -1,0 +1,68 @@
+<form role="form">
+    <div class="container" ng-controller="module1Ctrl">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <h1>
+                    Enter your business information
+                </h1>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-md-6 column">
+                <h2>Office Details</h2>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <div class="row clearfix">
+                        <div class="col-md-10 column">
+                            <input type="text" id="address" class="form-control" ng-autocomplete="result" details="details" options="options"/>
+                        </div>
+                        <div class="col-md-2 column">
+                            <button type="button" ng- class="btn btn-default" ng-click="addMarker()">Save</button>
+                        </div>
+                    </div>
+                    <ul style="margin: 10px">
+                        <li ng-repeat="marker in markers" style="list-style-type: none;">
+                            <div class="row clearfix">
+                                <div class="col-md-1 column">
+                                    <a href="#" class="glyphicon glyphicon-remove"></a>
+                                </div>
+                                <div class="col-md-1 column">
+                                    <a href="#" class="glyphicon glyphicon-edit"></a>
+                                </div>
+                                <div class="col-md-10 column">
+                                    {{marker.formatted_address}}
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <label>Services</label>
+                    <tabset >
+                        <tab heading="Money">
+                            <ul>
+                                <li ng-repeat=""></li>
+                            </ul>
+                        </tab>
+                        <tab heading="Goods">
+
+                        </tab>
+                        <tab heading="Calls">
+
+                        </tab>
+                    </tabset>
+
+                </div>
+            </div>
+            <div class="col-md-6 column">
+                <h2>Preview</h2>
+                <google-map center="map.center" zoom="map.zoom" draggable="true">
+                    <markers models='markers' coords="'coords'">
+                    </markers>
+                </google-map>
+            </div>
+        </div>
+</div>
+</form>
+
+
+<link rel="stylesheet" type="text/css" href="module1/module1.css"/>
