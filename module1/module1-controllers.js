@@ -14,10 +14,10 @@ module1Controllers
 
             $scope.map = {
                 center: {
-                    latitude: 45,
-                    longitude: -73
+                    latitude: 26.8,
+                    longitude: -80.6
                 },
-                zoom: 8
+                zoom: 7
             };
 
             $scope.markers = markersSrv.markers;
@@ -36,6 +36,7 @@ module1Controllers
                     $scope.map.center.latitude = k;
                     $scope.map.center.longitude = B;
                     $scope.validPlace = true;
+
                 }else
                 {
                     $scope.validPlace = false;
