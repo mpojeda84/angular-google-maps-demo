@@ -3,8 +3,8 @@
  */
 var module1Controllers = angular.module('module1Controllers',['module1Services','ngAutocomplete']);
 module1Controllers
-    .controller('module1Ctrl', ['$rootScope', '$scope','$http', '$log','$modal', '$state', 'markersSrv',
-        function($rootScope, $scope,  $http, $log, $modal, $state, markersSrv) {
+    .controller('module1Ctrl', ['$rootScope', '$scope','$http', '$log','$modal', '$state', 'mapSrv',
+        function($rootScope, $scope,  $http, $log, $modal, $state, mapSrv) {
 
             $scope.result = '';
             $scope.options = null;
@@ -20,14 +20,18 @@ module1Controllers
                 zoom: 7
             };
 
-            $scope.markers = markersSrv.markers;
+            $scope.markers = mapSrv.markers;
 
             $scope.addMarker = function(){
                 $scope.details.coords = {latitude:$scope.details.geometry.location.k,longitude:$scope.details.geometry.location.B};
                 //$scope.details.icon = 'images/blue-icon.png'
-                markersSrv.addMarker($scope.details);
+                mapSrv.addMarker($scope.details);
                 $scope.map.zoom = 10;
             };
+
+            $scope.fromCurrency = 'USD';
+            $scope.toCurrency = 'CUC';
+            $scope.percentage = '5%';
 
             $scope.$watch('details',function(newValue){
                 if(newValue.geometry && newValue.geometry.location){
@@ -42,5 +46,9 @@ module1Controllers
                     $scope.validPlace = false;
                 }
             });
+
+            $scope.addMoney = function(){
+
+            };
 
         }]);

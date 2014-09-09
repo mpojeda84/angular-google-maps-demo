@@ -13,11 +13,8 @@
                 <div class="form-group">
                     <label for="address">Address</label>
                     <div class="row clearfix">
-                        <div class="col-md-10 column">
+                        <div class="col-md-12 column">
                             <input type="text" id="address" class="form-control" ng-autocomplete="result" details="details" options="options"/>
-                        </div>
-                        <div class="col-md-2 column">
-                            <button type="button" ng- class="btn btn-default" ng-click="addMarker()">Save</button>
                         </div>
                     </div>
                     <ul style="margin: 10px">
@@ -39,8 +36,70 @@
                     <label>Services</label>
                     <tabset >
                         <tab heading="Money">
-                            <ul>
-                            </ul>
+                            <div class="row clearfix s2c-service">
+                                <div class="col-md-12 column">
+                                    From:
+                                    <div class="btn-group" dropdown>
+                                        <button type="button" class="btn btn-default">{{fromCurrency}}</button>
+                                        <button type="button" class="btn btn-default dropdown-toggle">
+                                            <span class="caret"></span>
+                                            <span class="sr-only">Split button!</span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#" ng-click="fromCurrency='USD'">USD</a></li>
+                                            <li><a href="#" ng-click="fromCurrency='EUR'">EUR</a></li>
+                                        </ul>
+                                    </div>
+                                    To:
+                                    <div class="btn-group" dropdown>
+                                        <button type="button" class="btn btn-default">{{toCurrency}}</button>
+                                        <button type="button" class="btn btn-default dropdown-toggle">
+                                            <span class="caret"></span>
+                                            <span class="sr-only">Split button!</span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#" ng-click="toCurrency='CUC'">CUC</a></li>
+                                            <li><a href="#" ng-click="toCurrency='USD'">USD</a></li>
+                                            <li><a href="#" ng-click="toCurrency='EUR'">EUR</a></li>
+                                        </ul>
+                                    </div>
+                                    Fee:
+                                    <div class="btn-group" dropdown>
+                                        <button type="button" class="btn btn-default">{{percentage}}</button>
+                                        <button type="button" class="btn btn-default dropdown-toggle">
+                                            <span class="caret"></span>
+                                            <span class="sr-only">Split button!</span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#" ng-click="percentage='5'">5%</a></li>
+                                            <li><a href="#" ng-click="percentage='6'">6%</a></li>
+                                            <li><a href="#" ng-click="percentage='7'">7%</a></li>
+                                            <li><a href="#" ng-click="percentage='8'">8%</a></li>
+                                            <li><a href="#" ng-click="percentage='9'">9%</a></li>
+                                            <li><a href="#" ng-click="percentage='10'">10%</a></li>
+                                            <li><a href="#" ng-click="percentage='11'">11%</a></li>
+                                            <li><a href="#" ng-click="percentage='12'">12%</a></li>
+                                            <li><a href="#" ng-click="percentage='13'">13%</a></li>
+                                            <li><a href="#" ng-click="percentage='14'">14%</a></li>
+
+                                        </ul>
+                                    </div>
+                                    Maximum:
+                                    <input type="text" id="minnimum" style="width: 60px; display: inline-block" class="form-control"/>
+                                    <button type="button" ng- class="btn btn-default" ng-click="addMoney();">Add</button>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-md-3 column">
+
+                                </div>
+                                <div class="col-md-3 column">
+                                </div>
+                                <div class="col-md-3 column">
+                                </div>
+                                <div class="col-md-3 column">
+                                </div>
+                            </div>
                         </tab>
                         <tab heading="Goods">
 
@@ -49,8 +108,14 @@
 
                         </tab>
                     </tabset>
-
                 </div>
+                <div class="row clearfix">
+                    <div class="col-md-12 column">
+                        <button type="button" ng- class="btn btn-default" ng-click="">Cancel</button>
+                        <button type="button" ng- class="btn btn-default" ng-click="addMarker()">Save</button>
+                    </div>
+                </div>
+
             </div>
             <div class="col-md-6 column">
                 <h2>Preview</h2>
