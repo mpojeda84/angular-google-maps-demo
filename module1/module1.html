@@ -1,4 +1,4 @@
-<form role="form">
+
     <div class="container" ng-controller="module1Ctrl">
         <div class="row clearfix">
             <div class="col-md-12 column">
@@ -7,126 +7,196 @@
                 </h1>
             </div>
         </div>
-        <div class="row clearfix">
-            <div class="col-md-6 column">
-                <h2>Office Details</h2>
-                <div class="form-group">
-                    <label for="address">Address</label>
-                    <div class="row clearfix">
-                        <div class="col-md-12 column">
-                            <input type="text" id="address" class="form-control" ng-autocomplete="result" details="details" options="options"/>
+        <form role="form">
+            <div class="row clearfix">
+                <div class="col-md-6 column">
+                    <h2>Business Details</h2>
+                    <div class="form-group">
+                        <div class="row clearfix">
+                            <div class="col-md-7 column">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" ng-model="businessSrv.business.name" class="form-control" />
+                            </div>
+                            <div class="col-md-5 column">
+                                <label for="phone">Phone</label>
+                                <input type="text" id="phone" name="phone" ng-model="businessSrv.business.phone" class="form-control" />
+                            </div>
                         </div>
+                        <div class="row clearfix">
+                            <div class="col-md-12 column">
+                                <label for="url">Website</label>
+                                <input type="text" id="url" name="url" ng-model="businessSrv.business.url" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-md-12 column">
+                                <label for="address">Location</label>
+                                <input type="text" id="address" class="form-control" ng-autocomplete="result" details="details" options="options"/>
+                            </div>
+                        </div>
+
+                        <label>Services</label>
+                        <tabset >
+                            <tab heading="Money">
+                                <div class="row clearfix">
+                                    <div class="col-md-12 column">
+                                        <div class="panel panel-default s2c-margin-top">
+                                            <div class="panel-body">
+                                                <div>
+                                                    From:
+                                                    <div class="btn-group" dropdown>
+                                                        <button type="button" class="btn btn-default">{{businessSrv.moneyOffer.fromCurrency}}</button>
+                                                        <button type="button" class="btn btn-default dropdown-toggle">
+                                                            <span class="caret"></span>
+                                                            <span class="sr-only">Split button!</span>
+                                                        </button>
+                                                        <ul class="dropdown-menu" role="menu">
+                                                            <li><a href="#" ng-click="businessSrv.moneyOffer.fromCurrency='USD'">USD</a></li>
+                                                            <li><a href="#" ng-click="businessSrv.moneyOffer.fromCurrency='EUR'">EUR</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    To:
+                                                    <div class="btn-group" dropdown>
+                                                        <button type="button" class="btn btn-default">{{businessSrv.moneyOffer.toCurrency}}</button>
+                                                        <button type="button" class="btn btn-default dropdown-toggle">
+                                                            <span class="caret"></span>
+                                                            <span class="sr-only">Split button!</span>
+                                                        </button>
+                                                        <ul class="dropdown-menu" role="menu">
+                                                            <li><a href="#" ng-click="businessSrv.business.toCurrency='CUC'">CUC</a></li>
+                                                            <li><a href="#" ng-click="businessSrv.business.toCurrency='USD'">USD</a></li>
+                                                            <li><a href="#" ng-click="businessSrv.business.toCurrency='EUR'">EUR</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    Fee:
+                                                    <div class="btn-group" dropdown>
+                                                        <button type="button" class="btn btn-default">{{businessSrv.moneyOffer.percentage}}</button>
+                                                        <button type="button" class="btn btn-default dropdown-toggle">
+                                                            <span class="caret"></span>
+                                                            <span class="sr-only">Split button!</span>
+                                                        </button>
+                                                        <ul class="dropdown-menu" role="menu">
+                                                            <!--TODO: Cambiar esto a un ng-repeat -->
+                                                            <li><a href="#" ng-click="businessSrv.business.percentage='5'">5%</a></li>
+                                                            <li><a href="#" ng-click="businessSrv.business.percentage='6'">6%</a></li>
+                                                            <li><a href="#" ng-click="businessSrv.business.percentage='7'">7%</a></li>
+                                                            <li><a href="#" ng-click="businessSrv.business.percentage='8'">8%</a></li>
+                                                            <li><a href="#" ng-click="businessSrv.business.percentage='9'">9%</a></li>
+                                                            <li><a href="#" ng-click="businessSrv.business.percentage='10'">10%</a></li>
+                                                            <li><a href="#" ng-click="businessSrv.business.percentage='11'">11%</a></li>
+                                                            <li><a href="#" ng-click="businessSrv.business.percentage='12'">12%</a></li>
+                                                            <li><a href="#" ng-click="businessSrv.business.percentage='13'">13%</a></li>
+                                                            <li><a href="#" ng-click="businessSrv.business.percentage='14'">14%</a></li>
+
+                                                        </ul>
+                                                    </div>
+                                                    Show More:
+                                                    <input type="checkbox" ng-model="showMore"/>
+                                                    <button type="button" class="btn btn-default pull-right" ng-click="businessSrv.saveMoneyOffer()">Save</button>
+                                                </div>
+                                                <div ng-show="showMore" class="s2c-margin-top">
+                                                    Minimum:
+                                                    <input type="text" id="minimum" ng-model="businessSrv.moneyOffer.minimum" style="width: 60px; display: inline-block" class="form-control"/>
+
+                                                    Maximum:
+                                                    <input type="text" id="maximun" ng-model="businessSrv.moneyOffer.maximum" style="width: 60px; display: inline-block" class="form-control"/>
+
+                                                    Special:
+                                                    <input type="checkbox" ng-model="businessSrv.moneyOffer.special"/>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row clearfix">
+                                    <div class="col-md-12 column">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th>
+                                                    From
+                                                </th>
+                                                <th>
+                                                    To
+                                                </th>
+                                                <th>
+                                                    Fee
+                                                </th>
+                                                <th>
+                                                    Min
+                                                </th>
+                                                <th>
+                                                    Max
+                                                </th>
+                                                <th>
+                                                    Special
+                                                </th>
+                                                <th>
+                                                    Edi
+                                                </th>
+                                                <th>
+                                                    Del
+                                                </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr ng-repeat="offer in businessSrv.business.moneyOffers" ng-class-even="'active'">
+                                                <td>
+                                                    {{offer.fromCurrency}}
+                                                </td>
+                                                <td>
+                                                    {{offer.toCurrency}}
+                                                </td>
+                                                <td>
+                                                    {{offer.percentage}}
+                                                </td>
+                                                <td>
+                                                    {{offer.minimum}}
+                                                </td>
+                                                <td>
+                                                    {{offer.maximum}}
+                                                </td>
+                                                <td>
+                                                    {{offer.special}}
+                                                </td>
+                                                <td>
+                                                    Edi
+                                                </td>
+                                                <td>
+                                                    Del
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </tab>
+                            <tab heading="Goods">
+
+                            </tab>
+                            <tab heading="Calls">
+
+                            </tab>
+                        </tabset>
                     </div>
-                    <ul style="margin: 10px">
-                        <li ng-repeat="marker in markers" style="list-style-type: none;">
-                            <div class="row clearfix">
-                                <div class="col-md-1 column">
-                                    <a href="#" class="glyphicon glyphicon-remove"></a>
-                                </div>
-                                <div class="col-md-1 column">
-                                    <a href="#" class="glyphicon glyphicon-edit"></a>
-                                </div>
-                                <div class="col-md-10 column">
-                                    {{marker.formatted_address}}
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-
-                    <label>Services</label>
-                    <tabset >
-                        <tab heading="Money">
-                            <div class="row clearfix s2c-service">
-                                <div class="col-md-12 column">
-                                    From:
-                                    <div class="btn-group" dropdown>
-                                        <button type="button" class="btn btn-default">{{fromCurrency}}</button>
-                                        <button type="button" class="btn btn-default dropdown-toggle">
-                                            <span class="caret"></span>
-                                            <span class="sr-only">Split button!</span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#" ng-click="fromCurrency='USD'">USD</a></li>
-                                            <li><a href="#" ng-click="fromCurrency='EUR'">EUR</a></li>
-                                        </ul>
-                                    </div>
-                                    To:
-                                    <div class="btn-group" dropdown>
-                                        <button type="button" class="btn btn-default">{{toCurrency}}</button>
-                                        <button type="button" class="btn btn-default dropdown-toggle">
-                                            <span class="caret"></span>
-                                            <span class="sr-only">Split button!</span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#" ng-click="toCurrency='CUC'">CUC</a></li>
-                                            <li><a href="#" ng-click="toCurrency='USD'">USD</a></li>
-                                            <li><a href="#" ng-click="toCurrency='EUR'">EUR</a></li>
-                                        </ul>
-                                    </div>
-                                    Fee:
-                                    <div class="btn-group" dropdown>
-                                        <button type="button" class="btn btn-default">{{percentage}}</button>
-                                        <button type="button" class="btn btn-default dropdown-toggle">
-                                            <span class="caret"></span>
-                                            <span class="sr-only">Split button!</span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#" ng-click="percentage='5'">5%</a></li>
-                                            <li><a href="#" ng-click="percentage='6'">6%</a></li>
-                                            <li><a href="#" ng-click="percentage='7'">7%</a></li>
-                                            <li><a href="#" ng-click="percentage='8'">8%</a></li>
-                                            <li><a href="#" ng-click="percentage='9'">9%</a></li>
-                                            <li><a href="#" ng-click="percentage='10'">10%</a></li>
-                                            <li><a href="#" ng-click="percentage='11'">11%</a></li>
-                                            <li><a href="#" ng-click="percentage='12'">12%</a></li>
-                                            <li><a href="#" ng-click="percentage='13'">13%</a></li>
-                                            <li><a href="#" ng-click="percentage='14'">14%</a></li>
-
-                                        </ul>
-                                    </div>
-                                    Maximum:
-                                    <input type="text" id="minnimum" style="width: 60px; display: inline-block" class="form-control"/>
-                                    <button type="button" ng- class="btn btn-default" ng-click="addMoney();">Add</button>
-                                </div>
-                            </div>
-                            <div class="row clearfix">
-                                <div class="col-md-3 column">
-
-                                </div>
-                                <div class="col-md-3 column">
-                                </div>
-                                <div class="col-md-3 column">
-                                </div>
-                                <div class="col-md-3 column">
-                                </div>
-                            </div>
-                        </tab>
-                        <tab heading="Goods">
-
-                        </tab>
-                        <tab heading="Calls">
-
-                        </tab>
-                    </tabset>
                 </div>
-                <div class="row clearfix">
-                    <div class="col-md-12 column">
-                        <button type="button" ng- class="btn btn-default" ng-click="">Cancel</button>
-                        <button type="button" ng- class="btn btn-default" ng-click="addMarker()">Save</button>
-                    </div>
+                <div class="col-md-6 column">
+                    <h2>Preview</h2>
+                    <google-map center="map.center" zoom="map.zoom" draggable="true">
+                        <markers models='markers' coords="'coords'">
+                        </markers>
+                    </google-map>
                 </div>
-
             </div>
-            <div class="col-md-6 column">
-                <h2>Preview</h2>
-                <google-map center="map.center" zoom="map.zoom" draggable="true">
-                    <markers models='markers' coords="'coords'">
-                    </markers>
-                </google-map>
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <button type="button" ng- class="btn btn-default" ng-click="">Cancel</button>
+                    <button type="button" ng- class="btn btn-default" ng-click="SaveBusiness()">Save</button>
+                </div>
             </div>
-        </div>
+        </form>
 </div>
-</form>
 
 
 <link rel="stylesheet" type="text/css" href="module1/module1.css"/>

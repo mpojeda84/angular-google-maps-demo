@@ -3,51 +3,56 @@
  */
 var module1Services = angular.module('module1Services', ['ngResource']);
 
-module1Services.factory('officeSrv', function() {
-    return {
-        office:this.newOffice(),
+module1Services.factory('businessSrv', function() {
+    var newMoneyOffer = function(){
+        return {
+            fromCurrency: 'USD',
+            toCurrency: 'CUC',
+            percentage: 5,
+            special:false,
+            minimum:0,
+            maximum:0
+        }
+    };
 
-        sendMoneyOffer:null,
-        sendGoodsOffer:null,
-        callsOffer:null,
+    var newBusiness = function(){
+        return {
+            id:0,
+            location:null,
+            name:null,
+            phone:null,
+            url:null,
+            moneyOffers:[],
+            goodsOffers:[],
+            callsOffers:[]
+        };
+    };
+
+    return {
+        business: newBusiness(),
+        newBusiness:newBusiness,
+
+        moneyOffer:newMoneyOffer(),
+        newMoneyOffer: newMoneyOffer,
         index:-1,
-        newOffice:function(){
-            return {
-                id:0,
-                sendMoneyOffers:[],
-                sendGoodsOffers:[],
-                callsOffers:[]
-            };
-        },
+
         editMoneyOffer:function(index){
-            angular.copy(this.office.sendMoneyOffers[index],this.sendMoneyOffer);
+            angular.copy(this.business.moneyOffers[index],this.moneyOffer);
             this.index = index;
         },
-        editGoodsOffer:function(index){
-            angular.copy(this.office.sendGoodsOffers[index],this.sendGoodsOffer);
-            this.index = index;
-        },
-        editCallsOffer:function(index){
-            angular.copy(this.office.callsOffer[index],this.callsOffer);
-            this.index = index;
-        },
-        cancelEdit:function(){
+        cancelEdit: function(){
             this.index = -1;
+            this.moneyOffer = newMoneyOffer();
         },
-        saveMoneyOffer:function(index){
-            this.office.sendMoneyOffers[index] = this.sendMoneyOffer;
-            this.sendMoneyOffer = null;
-            this.index = -1;
-        },
-        saveGoodsOffer:function(index){
-            this.office.sendGoodsOffers[index] = this.sendGoodsOffer;
-            this.sendGoodsOffer = null;
-            this.index = -1;
-        },
-        saveCallsOffer:function(index){
-            this.office.callsOffer[index] = this.callsOffer;
-            this.callsOffer = null;
-            this.index = -1;
+        saveMoneyOffer:function(){
+            if(this.index == -1){
+                this.business.moneyOffers.push(this.moneyOffer);
+                this.moneyOffer=newMoneyOffer();
+            }else {
+                this.business.moneyOffers[this.index] = this.moneyOffer;
+                this.moneyOffer = newMoneyOffer();
+                this.index = -1;
+            }
         }
     };
 });

@@ -3,8 +3,10 @@
  */
 var module1Controllers = angular.module('module1Controllers',['module1Services','ngAutocomplete']);
 module1Controllers
-    .controller('module1Ctrl', ['$rootScope', '$scope','$http', '$log','$modal', '$state', 'mapSrv',
-        function($rootScope, $scope,  $http, $log, $modal, $state, mapSrv) {
+    .controller('module1Ctrl', ['$rootScope', '$scope','$http', '$log','$modal', '$state', 'mapSrv', 'businessSrv',
+        function($rootScope, $scope,  $http, $log, $modal, $state, mapSrv, businessSrv) {
+
+            $scope.businessSrv = businessSrv;
 
             $scope.result = '';
             $scope.options = null;
@@ -22,16 +24,23 @@ module1Controllers
 
             $scope.markers = mapSrv.markers;
 
-            $scope.addMarker = function(){
-                $scope.details.coords = {latitude:$scope.details.geometry.location.k,longitude:$scope.details.geometry.location.B};
-                //$scope.details.icon = 'images/blue-icon.png'
-                mapSrv.addMarker($scope.details);
-                $scope.map.zoom = 10;
+            $scope.updateMap = function(){
+                if($scope.details != null && $scope.details != '') {
+                    $scope.details.coords = {latitude: $scope.details.geometry.location.k, longitude: $scope.details.geometry.location.B};
+                    //$scope.details.icon = 'images/blue-icon.png'
+                    mapSrv.addMarker($scope.details);
+                    $scope.map.zoom = 10;
+                }
             };
 
             $scope.fromCurrency = 'USD';
             $scope.toCurrency = 'CUC';
             $scope.percentage = '5%';
+
+
+            $scope.$watch('result',function(newValue){
+                $scope.updateMap();
+            });
 
             $scope.$watch('details',function(newValue){
                 if(newValue.geometry && newValue.geometry.location){

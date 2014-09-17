@@ -14,12 +14,18 @@ appServices.factory('appSrv', ['$http', '$rootScope', '$cookies' , function($htt
 appServices.factory('mapSrv', function() {
     return {
         markers: [],
+        initMarkers:function(){
+            this.markers = [];
+        },
         addMarker: function(marker){
             this.markers.push(marker);
         },
         deleteMarker: function(marker){
             var index = this.markers.indexOf(marker);
             this.markers.splice(index,1);
+        },
+        deleteAllMarkers:function(){
+            this.initMarkers();
         }
     };
 });
